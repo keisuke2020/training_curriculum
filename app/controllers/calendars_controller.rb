@@ -8,7 +8,7 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
-    # binding.pry
+    binding.pry
     Plan.create(plan_params)
     redirect_to action: :index
   end
@@ -16,7 +16,13 @@ class CalendarsController < ApplicationController
   private
 
   def plan_params
-    params.require(:calendars).permit(:date, :plan)
+    # params.require(:モデル名).permit(キー)
+    # 元々の記述↓↓
+    params.require(:plan).permit(:plan,:date) 
+    # :carendersを:plansに変更↓↓
+    #  params.require(:plans).permit(:date, :plan) 
+    # 試しにrequire(:calendars)を削除↓↓
+    # params.permit(:date, :plan)
   end
 
   def getWeek
@@ -36,6 +42,7 @@ class CalendarsController < ApplicationController
       # mapはeachの様な働きをするメソッド
       plan = @plans.map do |plan|
         #pushを用いることで、配列plans[]にplanカラム(黄色)のplan(水色)を代入している
+        # 処理内容とif文が逆に記述されている
         plans.push(plan.plan) if plan.date == @todays_date + x
       end
     # ビューファイルに渡す値はここでハッシュを用いて定義されている
