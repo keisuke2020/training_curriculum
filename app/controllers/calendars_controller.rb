@@ -8,7 +8,6 @@ class CalendarsController < ApplicationController
 
   # 予定の保存
   def create
-    binding.pry
     Plan.create(plan_params)
     redirect_to action: :index
   end
@@ -17,7 +16,6 @@ class CalendarsController < ApplicationController
 
   def plan_params
     # params.require(:モデル名).permit(キー)
-    # 元々の記述↓↓
     params.require(:plan).permit(:plan,:date) 
     # :carendersを:plansに変更↓↓
     #  params.require(:plans).permit(:date, :plan) 
