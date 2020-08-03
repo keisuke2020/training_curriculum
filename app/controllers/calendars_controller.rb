@@ -45,7 +45,7 @@ class CalendarsController < ApplicationController
       end
 
     # ビューファイルに渡す値はここでハッシュを用いて定義されている
-      days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => plans, :youbi => wdays[(@todays_date + x).wday] }
+      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: plans, youbi: wdays[(@todays_date + x).wday] }
       @week_days.push(days)
     end
 
